@@ -187,7 +187,7 @@ function App() {
                   </div>
                 );
               }
-              return null; // Skip fields that are inactive
+              return null;
             })}
           </div>
         ) : (
