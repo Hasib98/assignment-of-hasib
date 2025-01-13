@@ -145,30 +145,55 @@ function App() {
         <h2 className="mb-4 text-center text-2xl font-semibold text-gray-800">
           Form State
         </h2>
-        {formFields.length > 0 && (
-          <>
+        {formFields.length > 0 ? (
+          <div className="space-y-4">
             {formFields.map((field, index) => {
               const isActive = field.name || field.designation;
               if (isActive) {
                 return (
-                  <div key={index} className="mb-2 border-b pb-2">
-                    <p className="text-gray-600">
-                      <span className="font-bold">Person {index + 1}:</span>
+                  <div
+                    key={index}
+                    className="rounded-lg border border-gray-200 bg-gray-50 p-4 shadow-sm"
+                  >
+                    <h3 className="mb-2 text-center text-lg font-semibold text-gray-700">
+                      # {index + 1}
+                    </h3>
+                    <p className="text-center text-lg">
+                      <span className="font-semibold text-gray-600">Name:</span>{' '}
+                      <span
+                        className={`${
+                          field.name
+                            ? 'capitalize text-gray-800'
+                            : 'italic text-gray-400'
+                        }`}
+                      >
+                        {field.name || 'Not provided'}
+                      </span>
                     </p>
-                    <p className="text-sm">
-                      <span className="font-semibold">Name:</span>{' '}
-                      {field.name || 'Not provided'}
-                    </p>
-                    <p className="text-sm">
-                      <span className="font-semibold">Designation:</span>{' '}
-                      {field.designation || 'Not selected'}
+                    <p className="text-center text-lg">
+                      <span className="font-semibold text-gray-600">
+                        Designation:
+                      </span>{' '}
+                      <span
+                        className={`${
+                          field.designation
+                            ? 'capitalize text-gray-800'
+                            : 'italic text-gray-400'
+                        }`}
+                      >
+                        {field.designation || 'Not selected'}
+                      </span>
                     </p>
                   </div>
                 );
               }
               return null; // Skip fields that are inactive
             })}
-          </>
+          </div>
+        ) : (
+          <p className="text-center text-sm text-gray-500">
+            No active fields to display.
+          </p>
         )}
       </div>
 
